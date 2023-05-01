@@ -28,6 +28,42 @@ zooRoute.route('/food').get(function (req, res){
     });
 });
 
+zooRoute.route('/editfood/:id').get(function (req,res){
+    let id = req.params.id;
+    console.log("Food Edit called." +id);
+    Foods.findById(id, function (err,foods){
+        res.json(foods);
+    });
+});
+
+zooRoute.route('/updatefood/:id').post(function (req,res){
+    let id = req.params.id;
+    console.log("Food Update called." +id);
+    Foods.findById(id, function (err, foods){
+        if(!foods)
+            res.status(404).send("Data is not found??");
+        else{
+            foods.itemno = req.body.itemno;
+            foods.date = req.body.date;
+            foods.category = req.body.category;
+            foods.name = req.body.name;
+            foods.qty = req.body.qty;
+            foods.edate = req.body.edate;
+            foods.uprice = req.body.uprice;
+            foods.vendor = req.body.vendor;
+            foods.reorderlevel = req.body.reorderlevel;
+
+
+            foods.save().then(foods => {
+                res.json('Update Complete');
+            })
+                .catch(err =>{
+                    res.status(400).send("Unable to update data");
+                });
+        }
+    });
+});
+
 zooRoute.route('/addmedicine').post(function (req,res){
     console.log("Medicines Add called.");
     let medicines = new Medicines(req.body);
@@ -47,6 +83,41 @@ zooRoute.route('/medicine').get(function (req, res){
             console.log("your erorr :" +err);
         else{
             res.json(medicines);
+        }
+    });
+});
+
+zooRoute.route('/editmedicine/:id').get(function (req,res){
+    let id = req.params.id;
+    console.log("Medicines Edit called." +id);
+    Medicines.findById(id, function (err,medicines){
+        res.json(medicines);
+    });
+});
+
+zooRoute.route('/updatemedicine/:id').post(function (req,res){
+    let id = req.params.id;
+    console.log("Medicines Update called." +id);
+    Medicines.findById(id, function (err, medicines){
+        if(!medicines)
+            res.status(404).send("Data is not found??");
+        else{
+            medicines.itemno = req.body.itemno;
+            medicines.date = req.body.date;
+            medicines.name = req.body.name;
+            medicines.qty = req.body.qty;
+            medicines.edate = req.body.edate;
+            medicines.uprice = req.body.uprice;
+            medicines.vendor = req.body.vendor;
+            medicines.reorderlevel = req.body.reorderlevel;
+
+
+            medicines.save().then(medicines => {
+                res.json('Update Complete');
+            })
+                .catch(err =>{
+                    res.status(400).send("Unable to update data");
+                });
         }
     });
 });
