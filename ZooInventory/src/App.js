@@ -14,7 +14,7 @@ import editMedicine from './components/editMedicine';
 
 import addEquipment from './components/addEquipment';
 import viewEquipment from './components/viewEquipment';
-
+import editEquipment from './components/editEquipment';
 
 class App extends Component{
 
@@ -34,6 +34,7 @@ class App extends Component{
 
                         <Route path='/addEquipment' component={addEquipment}/>
                         <Route path='/viewEquipment' component={viewEquipment}/>
+                        <Route path='/editEquipment/:id' component={editEquipment}/>
                     </Switch>
                 </Router>
 

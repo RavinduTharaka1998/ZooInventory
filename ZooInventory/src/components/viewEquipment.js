@@ -167,6 +167,7 @@ export default  class viewEquipment extends  Component{
                                 <tr>
                                     <th>Item No</th>
                                     <th>Date</th>
+                                    <th>Category</th>
                                     <th>Name</th>
                                     <th>Quantity</th>
                                     <th>Last Check Date</th>

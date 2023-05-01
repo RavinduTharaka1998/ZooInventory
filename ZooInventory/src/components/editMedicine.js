@@ -190,7 +190,7 @@ export default  class editMedicine extends  Component{
                             </div>
                         
                             <div className="form-group">
-                                <input type = "submit" value = "Update Medicine" className="btn btn-dark"/>
+                                <input type = "submit" value = "Update Medicine" className="btn btn-success"/>
                             </div>
                         </form>
                         

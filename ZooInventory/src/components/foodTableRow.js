@@ -9,7 +9,7 @@ class TableRow extends Component {
         this.deletesss = this.deletesss.bind(this);
     }
     deletesss(){
-        axios.get('http://localhost:5000/zooInventory/deletefood/'+this.props.obj._id)
+        axios.get('http://localhost:4000/zooInventory/deletefood/'+this.props.obj._id)
             .then(this.setState({redirect: true}))
             .catch(err => console.log(err))
         alert("Your Food Successfully Deleted....")

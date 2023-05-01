@@ -3,7 +3,7 @@ import axios from 'axios';
 
 import './css/adminHome.css';
 
-export default  class addFood extends  Component{
+export default  class addEquipment extends  Component{
 
 
     constructor(props) {

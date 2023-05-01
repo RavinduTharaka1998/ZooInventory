@@ -184,7 +184,7 @@ export default  class addFood extends  Component{
                             </div>
                             <div className="form-group">
                                 <label>Re-Order Level :</label>
-                                <input type ="number" min = "50"  value={this.state.reorderlevel} onChange = {this.onChangeReOrderLevel} className="form-control"/>
+                                <input type ="number" min = "1"  value={this.state.reorderlevel} onChange = {this.onChangeReOrderLevel} className="form-control"/>
                             </div>
                         
                             <div className="form-group">

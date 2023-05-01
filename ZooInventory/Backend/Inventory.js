@@ -5,6 +5,8 @@ let Foods = require('./food');
 let Medicines = require('./medicine');
 let Equipments = require('./equipment');
 
+
+//food api 
 zooRoute.route('/addfood').post(function (req,res){
     console.log("Food Add called.");
     let foods = new Foods(req.body);
@@ -64,6 +66,62 @@ zooRoute.route('/updatefood/:id').post(function (req,res){
     });
 });
 
+zooRoute.route('/deletefood/:id').get(function(req,res){
+    Foods.findByIdAndRemove({_id:req.params.id}, function (err, food){
+        if(err)res.json(err);
+
+        else res.json('Successfully Removed');
+    });
+});
+
+zooRoute.route('/vegetable/:id').get(function (req,res){
+    let id = req.params.id;
+    console.log("Vegetable Food Get called " +id);
+    Foods.findOne({$and:[{category : id}]}, function (err,foods){
+        //console.log(foods);
+        res.json(foods);
+    });
+});
+
+zooRoute.route('/fruits/:id').get(function (req,res){
+    let id = req.params.id;
+    console.log("Fruits Food Get called " +id);
+    Foods.findOne({$and:[{category : id}]}, function (err,foods){
+        //console.log(foods);
+        res.json(foods);
+    });
+});
+
+zooRoute.route('/meats/:id').get(function (req,res){
+    let id = req.params.id;
+    console.log("Meats Food Get called " +id);
+    Foods.findOne({$and:[{category : id}]}, function (err,foods){
+        //console.log(foods);
+        res.json(foods);
+    });
+});
+
+zooRoute.route('/fish/:id').get(function (req,res){
+    let id = req.params.id;
+    console.log("Fish Food Get called " +id);
+    Foods.findOne({$and:[{category : id}]}, function (err,foods){
+        //console.log(foods);
+        res.json(foods);
+    });
+});
+
+zooRoute.route('/milk/:id').get(function (req,res){
+    let id = req.params.id;
+    console.log("Fish Food Get called " +id);
+    Foods.findOne({$and:[{category : id}]}, function (err,foods){
+        //console.log(foods);
+        res.json(foods);
+    });
+});
+
+
+
+//medicine api
 zooRoute.route('/addmedicine').post(function (req,res){
     console.log("Medicines Add called.");
     let medicines = new Medicines(req.body);
@@ -122,6 +180,18 @@ zooRoute.route('/updatemedicine/:id').post(function (req,res){
     });
 });
 
+zooRoute.route('/deletemedicine/:id').get(function(req,res){
+    Medicines.findByIdAndRemove({_id:req.params.id}, function (err, medicines){
+        if(err)res.json(err);
+
+        else res.json('Successfully Removed');
+    });
+});
+
+
+
+
+//equipment api
 zooRoute.route('/addequipment').post(function (req,res){
     console.log("Equipment Add called.");
     let equipments = new Equipments(req.body);
@@ -142,6 +212,50 @@ zooRoute.route('/equipment').get(function (req, res){
         else{
             res.json(equipments);
         }
+    });
+});
+
+zooRoute.route('/editequipment/:id').get(function (req,res){
+    let id = req.params.id;
+    console.log("Equipments Edit called." +id);
+    Equipments.findById(id, function (err,equipments){
+        res.json(equipments);
+    });
+});
+
+zooRoute.route('/updateequipment/:id').post(function (req,res){
+    let id = req.params.id;
+    console.log("Equipments Update called." +id);
+    Equipments.findById(id, function (err, equipments){
+        if(!equipments)
+            res.status(404).send("Data is not found??");
+        else{
+            equipments.itemno = req.body.itemno;
+            equipments.date = req.body.date;
+            equipments.category = req.body.category;
+            equipments.name = req.body.name;
+            equipments.qty = req.body.qty;
+            equipments.lastcheckdate = req.body.lastcheckdate;
+            equipments.nextcheckdate = req.body.nextcheckdate;
+            equipments.vendor = req.body.vendor;
+            equipments.maintaner = req.body.maintaner;
+
+
+            equipments.save().then(equipments => {
+                res.json('Update Complete');
+            })
+                .catch(err =>{
+                    res.status(400).send("Unable to update data");
+                });
+        }
+    });
+});
+
+zooRoute.route('/deleteequipment/:id').get(function(req,res){
+    Equipments.findByIdAndRemove({_id:req.params.id}, function (err, equipments){
+        if(err)res.json(err);
+
+        else res.json('Successfully Removed');
     });
 });
 
