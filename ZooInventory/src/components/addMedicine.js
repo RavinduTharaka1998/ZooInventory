@@ -87,7 +87,7 @@ export default  class addMedicine extends  Component{
 
        
        
-                        axios.post('http://localhost:5000/zooInventory/addmedicine',obj)
+                        axios.post('http://localhost:4000/zooInventory/addmedicine',obj)
                         .then(res => {
                             alert("Medicine Add Successfully");
                             this.setState({
@@ -129,6 +129,7 @@ export default  class addMedicine extends  Component{
                         <div className = "top-tittle-bar">
                             <h2 className= 'tittle'>Medicine</h2>
                             <h6>Welcome to your medicine</h6>
+                            <a href = "/viewMedicine" className='btn btn-dark'>View Current Medicine</a>
                         </div>
                         <br/>
                         <h3 align="center">Add New Medicine</h3>

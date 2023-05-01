@@ -94,7 +94,7 @@ export default  class addFood extends  Component{
 
        
        
-                        axios.post('http://localhost:5000/zooInventory/addfood',obj)
+                        axios.post('http://localhost:4000/zooInventory/addfood',obj)
                         .then(res => {
                             alert("Food Add Successfully");
                             this.setState({
@@ -137,8 +137,8 @@ export default  class addFood extends  Component{
                         <div className = "top-tittle-bar">
                             <h2 className= 'tittle'>Foods</h2>
                             <h6>Welcome to your food</h6>
+                            <a href = "/viewFood" className='btn btn-dark'>View Current Foods</a>
                         </div>
-                        <br/>
                         <h3 align="center">Add New Food</h3>
                         <hr/>
                         <form onSubmit={this.onSubmit} style={{width:'50%',marginLeft:320}}>
@@ -195,7 +195,7 @@ export default  class addFood extends  Component{
 
                             
                         <hr/>  
-                        <br/>
+                          
                         <hr/>
                         </div>
                 </div>

@@ -1,31 +1,36 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-
-Customers = new Schema({
+Foods = new Schema({
+    itemno: {
+        type: String
+    },
+    date: {
+        type: String
+    },
+    category: {
+        type: String
+    },
     name: {
         type: String
     },
-    address: {
+    qty: {
         type: String
     },
-    nic: {
+    edate: {
         type: String
     },
-    phone: {
+    uprice: {
         type: String
     },
-    customer_type: {
+    vender: {
         type: String
     },
-    email: {
-        type: String
-    },
-    password: {
+    reorderlevel: {
         type: String
     }
 }, {
-    collation: 'customers'
+    collation: 'foods'
 });
 
-module.exports = mongoose.model('Customers',Customers);
+module.exports = mongoose.model('Foods',Foods);
