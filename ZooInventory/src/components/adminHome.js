@@ -1,5 +1,6 @@
 import  React, {Component} from 'react';
 import axios from 'axios';
+import MedicineTableRow from './checkMedicineLevelTableRow';
 
 import './css/adminHome.css';
 
@@ -28,7 +29,9 @@ export default  class adminHome extends  Component{
 
             miqty:'',
             mireorderlevel:'',
-            miresult:''
+            miresult:'',
+
+            medicine: []
         };
     }
 
@@ -92,6 +95,21 @@ export default  class adminHome extends  Component{
             .catch(function (error){
                 console.log("Can't Get Data");
             })
+
+        axios.get('http://localhost:4000/zooInventory/medicine/')
+        .then(response => {
+            this.setState({medicine : response.data});
+        })
+        .catch(function (error){
+            console.log(error);
+        })
+    }
+
+    tabRow(){
+        return this.state.medicine.map(function (object, i){
+            return <MedicineTableRow obj = {object} key = {i}/>;
+        });
+        
     }
 
     
@@ -145,10 +163,11 @@ export default  class adminHome extends  Component{
                         <hr/> 
 
                         <h4>Foods</h4>
+                        <hr/>
                         <br/>
                         <div className='food'>
                             <div className='food-inner'>
-                                <h5>Vegetables</h5>
+                                <h6>Vegetables</h6>
                                 <br/>
                                 <center>
                                     <img src = "https://5.imimg.com/data5/SELLER/Default/2021/6/RF/KV/MA/47444804/fresh-vegitables-moq-5-kg--1000x1000.jpeg" width ="200"/>
@@ -204,7 +223,20 @@ export default  class adminHome extends  Component{
                         <h4>Medicine</h4>
 
                         <div>
-                            
+                        <table className="table table-striped" style = {{marginTop :20}}>
+                            <thead>
+                                <tr>
+                                    <th>Item No</th>
+                                    <th>Name</th>
+                                    <th>Quantity</th>
+                                    <th>Re Order Level</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {this.tabRow()}
+                            </tbody>
+                        </table>
                         </div> 
                         <hr/>
                         </div>
