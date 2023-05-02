@@ -16,7 +16,7 @@ export default  class searchEquipment extends  Component{
    
 
     componentDidMount() {
-        alert('email is ' +this.props.match.params.id);
+        //alert('email is ' +this.props.match.params.id);
         axios.get('http://localhost:4000/zooInventory/searchequipment/'+this.props.match.params.id)
             .then(response => {
                 this.setState({equipment : response.data});
@@ -55,9 +55,18 @@ export default  class searchEquipment extends  Component{
                     <div class="content">
                         <div className = "top-tittle-bar">
                             <h2 className= 'tittle'>Equipment</h2>
-                            <h6>Welcome to your equipment</h6>
-                            <a href = "/viewEquipment" className='btn btn-dark'>Go Back</a>
+                            <from style ={{display:'flex',gap:110}} onSubmit={this.onSubmit}>
+                                <div className="form-group">
+                                    <input type ="text" style ={{width:'150%'}} className="form-control"/>
+                                </div>
+                                <div className="form-group">
+                                    <a href = "" className='btn btn-info'>Search</a>
+                                </div>
+                            </from>
                         </div>
+                        <br/>
+                        <h6>Welcome to your equipment</h6>
+                        <a href = "/viewEquipment" className='btn btn-dark'>Go Back</a>
                         <h3 align="center">Equipment History</h3>
                         <hr/>
                         

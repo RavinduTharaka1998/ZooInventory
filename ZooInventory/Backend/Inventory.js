@@ -52,7 +52,7 @@ zooRoute.route('/updatefood/:id').post(function (req,res){
             foods.qty = req.body.qty;
             foods.edate = req.body.edate;
             foods.uprice = req.body.uprice;
-            foods.vendor = req.body.vendor;
+            foods.vender = req.body.vender;
             foods.reorderlevel = req.body.reorderlevel;
 
 
@@ -122,7 +122,7 @@ zooRoute.route('/milk/:id').get(function (req,res){
 zooRoute.route('/searchfood/:id').get(function (req,res){
     let id = req.params.id;
     console.log("Search Food Get called " +id);
-    Foods.find({$or:[{itemno : id},{date : id},{category : id},{name : id},{qty : id},{edate : id},{uprice : id},{vendor : id},{reorderlevel : id}]}, function (err,foods){
+    Foods.find({$or:[{itemno : id},{category : id},{name : id},{edate : id},{vender : id}]}, function (err,foods){
         //console.log(foods);
         res.json(foods);
     });
@@ -174,7 +174,7 @@ zooRoute.route('/updatemedicine/:id').post(function (req,res){
             medicines.qty = req.body.qty;
             medicines.edate = req.body.edate;
             medicines.uprice = req.body.uprice;
-            medicines.vendor = req.body.vendor;
+            medicines.vender = req.body.vender;
             medicines.reorderlevel = req.body.reorderlevel;
 
 
@@ -199,7 +199,7 @@ zooRoute.route('/deletemedicine/:id').get(function(req,res){
 zooRoute.route('/searchmedicine/:id').get(function (req,res){
     let id = req.params.id;
     console.log("Search Medicine Get called " +id);
-    Medicines.find({$or:[{itemno : id},{date : id},{name : id},{qty : id},{edate : id},{uprice : id},{vendor : id},{reorderlevel : id}]}, function (err,foods){
+    Medicines.find({$or:[{itemno : id},{date : id},{name : id},{vender : id}]}, function (err,foods){
         //console.log(foods);
         res.json(foods);
     });
@@ -254,7 +254,7 @@ zooRoute.route('/updateequipment/:id').post(function (req,res){
             equipments.qty = req.body.qty;
             equipments.lastcheckdate = req.body.lastcheckdate;
             equipments.nextcheckdate = req.body.nextcheckdate;
-            equipments.vendor = req.body.vendor;
+            equipments.vender = req.body.vender;
             equipments.maintaner = req.body.maintaner;
 
 
@@ -279,7 +279,7 @@ zooRoute.route('/deleteequipment/:id').get(function(req,res){
 zooRoute.route('/searchequipment/:id').get(function (req,res){
     let id = req.params.id;
     console.log("Search Equipment Get called " +id);
-    Equipments.find({$or:[{itemno : id},{date : id},{category : id},{name : id},{qty : id},{lastcheckdate : id},{nextcheckdate : id},{vendor : id},{maintaner : id}]}, function (err,foods){
+    Equipments.find({$or:[{itemno : id},{date : id},{category : id},{name : id},{vender : id},{maintaner : id}]}, function (err,foods){
         //console.log(foods);
         res.json(foods);
     });

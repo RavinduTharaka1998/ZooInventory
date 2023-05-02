@@ -160,9 +160,17 @@ export default  class adminHome extends  Component{
                     <div class="content">
                         <div className = "top-tittle-bar">
                             <h2 className= 'tittle'>DASHBOARD</h2>
-                            <h6>Welcome to your dashboard</h6>
-                        </div>    
-
+                            <from style ={{display:'flex',gap:110}} onSubmit={this.onSubmit}>
+                                <div className="form-group">
+                                    <input type ="text" style ={{width:'150%'}} className="form-control"/>
+                                </div>
+                                <div className="form-group">
+                                    <a href = "" className='btn btn-info'>Search</a>
+                                </div>
+                            </from>
+                        </div>  
+                        <br/>  
+                        <h6>Welcome to your dashboard</h6>
                         <hr/> 
 
                         <h4>-- Foods --</h4>

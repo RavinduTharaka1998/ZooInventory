@@ -159,9 +159,18 @@ export default  class editFood extends  Component{
                     <div class="content">
                         <div className = "top-tittle-bar">
                             <h2 className= 'tittle'>Foods</h2>
-                            <h6>Welcome to your food</h6>
-                            <a href = "/viewFood" className='btn btn-dark'>View Current Foods</a>
+                            <from style ={{display:'flex',gap:110}} onSubmit={this.onSubmit}>
+                                <div className="form-group">
+                                    <input type ="text" style ={{width:'150%'}} className="form-control"/>
+                                </div>
+                                <div className="form-group">
+                                    <a href = "" className='btn btn-info'>Search</a>
+                                </div>
+                            </from>
                         </div>
+                        <br/>
+                        <h6>Welcome to your food</h6>
+                        <a href = "/viewFood" className='btn btn-dark'>View Current Foods</a>
                         <h3 align="center">Edit Food</h3>
                         <hr/>
                         <form onSubmit={this.onSubmit} style={{width:'50%',marginLeft:320}}>

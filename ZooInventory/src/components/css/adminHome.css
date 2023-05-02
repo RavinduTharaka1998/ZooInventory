@@ -2,7 +2,7 @@
     margin: 0;
     padding: 0;
     width: 200px;
-    background-color: rgb(71, 120, 255);
+    background-color: #141937;
     position: fixed;
     height: 100%;
     overflow: auto;
@@ -42,16 +42,26 @@ div.content {
     height: 1000px;
 }
 
-.tittle {
-    background-color: rgb(71, 120, 255);
+/* .tittle {
+    background-color: #141937;
     padding: 10px;
     color: white;
     font-family: 'Times New Roman', Times, serif;
     margin-left: -20px;
     margin-top: -2px;
     width: 1320px;
-}
+} */
 
+.top-tittle-bar {
+  display: flex;
+  gap: 50px;
+  background-color: #141937;
+  margin-left: -20px;
+  margin-top: -2px;
+  width: 1320px;
+  padding: 10px;
+  color: white;
+}
 .main-image {
     display: block;
     margin-left: auto;

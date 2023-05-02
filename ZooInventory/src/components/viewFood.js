@@ -91,10 +91,18 @@ export default  class viewFood extends  Component{
                     <div class="content">
                         <div className = "top-tittle-bar">
                             <h2 className= 'tittle'>Foods</h2>
-                            <h6>Welcome to your food</h6>
-                            <a href = "/addFood" className='btn btn-dark'>Go Back</a>
+                            <from style ={{display:'flex',gap:110}} onSubmit={this.onSubmit}>
+                                <div className="form-group">
+                                    <input type ="text" style ={{width:'150%'}} className="form-control"/>
+                                </div>
+                                <div className="form-group">
+                                    <a href = "" className='btn btn-info'>Search</a>
+                                </div>
+                            </from>
                         </div>
-
+                        <br/>
+                        <h6>Welcome to your food</h6>
+                        <a href = "/addFood" className='btn btn-dark'>Go Back</a>
                         <from style ={{float:'right',display:'flex',gap:5}} onSubmit={this.onSubmit}>
                                 <div className="form-group">
                                     <input type ="text" required value={this.state.searchkey} onChange = {this.onChangeSearchFood} className="form-control"/>

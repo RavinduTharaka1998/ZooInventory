@@ -87,10 +87,18 @@ export default  class viewMedicine extends  Component{
                     <div class="content">
                         <div className = "top-tittle-bar">
                             <h2 className= 'tittle'>Medicine</h2>
+                            <from style ={{display:'flex',gap:110}} onSubmit={this.onSubmit}>
+                                <div className="form-group">
+                                    <input type ="text" style ={{width:'150%'}} className="form-control"/>
+                                </div>
+                                <div className="form-group">
+                                    <a href = "" className='btn btn-info'>Search</a>
+                                </div>
+                            </from>
+                        </div>
+                            <br/>
                             <h6>Welcome to your medicine</h6>
                             <a href = "/addMedicine" className='btn btn-dark'>Go Back</a>
-                        </div>
-
                         <from style ={{float:'right',display:'flex',gap:5}} onSubmit={this.onSubmit}>
                                 <div className="form-group">
                                     <input type ="text" required value={this.state.searchkey} onChange = {this.onChangeSearchFood} className="form-control"/>
