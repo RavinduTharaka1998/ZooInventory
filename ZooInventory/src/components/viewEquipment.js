@@ -9,29 +9,15 @@ export default  class viewEquipment extends  Component{
     constructor(props) {
         super(props);
 
-        this.state = {equipment : [], search:''};
-        // this.onChangeItemNo = this.onChangeItemNo.bind(this);
-        // this.onChangeDate = this.onChangeDate.bind(this);
-        // this.onChangeCategory = this.onChangeCategory.bind(this);
-        // this.onChangeName = this.onChangeName.bind(this);
-        // this.onChangeQuantity = this.onChangeQuantity.bind(this);
-        // this.onChangeEDate = this.onChangeEDate.bind(this);
-        // this.onChangeUPrice = this.onChangeUPrice.bind(this);
-        // this.onChangeVender = this.onChangeVender.bind(this);
-        // this.onChangeReOrderLevel = this.onChangeReOrderLevel.bind(this);
-        // this.onSubmit = this.onSubmit.bind(this);
+        this.state = {equipment : [], searchkey: ''};
 
-        // this.state = {
-        //     itemno: '',
-        //     date: '',
-        //     category:'',
-        //     name:'',
-        //     qty:'',
-        //     edate:'',
-        //     uprice:'',
-        //     vender:'',
-        //     reorderlevel:''
-        // }
+        this.onChangeSearchFood = this.onChangeSearchFood.bind(this);
+    }
+
+    onChangeSearchFood(e){
+        this.setState( {
+            searchkey: e.target.value
+        });
     }
 
     componentDidMount() {
@@ -52,89 +38,6 @@ export default  class viewEquipment extends  Component{
         });
         
     }
-    
-    // onChangeItemNo(e){
-    //     this.setState( {
-    //         itemno: e.target.value
-    //     });
-    // }
-    // onChangeDate(e){
-    //     this.setState( {
-    //         date: e.target.value
-    //     });
-    // }
-    // onChangeCategory(e){
-    //     this.setState( {
-    //         category: e.target.value
-    //     });
-    // }
-    // onChangeName(e){
-    //     this.setState( {
-    //         name: e.target.value
-    //     });
-    // }
-    // onChangeQuantity(e){
-    //     this.setState( {
-    //         qty: e.target.value
-    //     });
-    // }
-    // onChangeEDate(e){
-    //     this.setState( {
-    //         edate: e.target.value
-    //     });
-    // }
-    // onChangeUPrice(e){
-    //     this.setState( {
-    //         uprice: e.target.value
-    //     });
-    // }
-    // onChangeVender(e){
-    //     this.setState( {
-    //         vender: e.target.value
-    //     });
-    // }
-    // onChangeReOrderLevel(e){
-    //     this.setState( {
-    //         reorderlevel: e.target.value
-    //     });
-    // }
-    // onSubmit(e){
-    //     e.preventDefault();
-    //     const obj = {
-    //         itemno : this.state.itemno,
-    //         date : this.state.date,
-    //         category : this.state.category,
-    //         name : this.state.name,
-    //         qty : this.state.qty,
-    //         edate : this.state.edate,
-    //         uprice : this.state.uprice,
-    //         vender : this.state.vender,
-    //         reorderlevel : this.state.reorderlevel
-    //     };
-
-       
-       
-    //                     axios.post('http://localhost:5000/zooInventory/addfood',obj)
-    //                     .then(res => {
-    //                         alert("Food Add Successfully");
-    //                         this.setState({
-    //                             itemno: '',
-    //                             date: '',
-    //                             category:'',
-    //                             name:'',
-    //                             qty:'',
-    //                             edate:'',
-    //                             uprice:'',
-    //                             vender:'',
-    //                             reorderlevel:''
-                    
-    //                         })
-    //                         console.log(res.data)});
-    //                     // this.props.history.push('/signIn');
-    //                     window.location.replace('/viewFood');
-                    
-    // }
-    
     
 
     render() {
@@ -158,8 +61,16 @@ export default  class viewEquipment extends  Component{
                         <div className = "top-tittle-bar">
                             <h2 className= 'tittle'>Equipment</h2>
                             <h6>Welcome to your equipment</h6>
-                            <a href = "/addMedicine" className='btn btn-dark'>Go Back</a>
+                            <a href = "/addEquipment" className='btn btn-dark'>Go Back</a>
                         </div>
+                        <from style ={{float:'right',display:'flex',gap:5}} onSubmit={this.onSubmit}>
+                                <div className="form-group">
+                                    <input type ="text" required value={this.state.searchkey} onChange = {this.onChangeSearchFood} className="form-control"/>
+                                </div>
+                                <div className="form-group" style ={{float:'right'}}>
+                                    <a href ={"/searchEquipment/"+this.state.searchkey} style ={{float:'right',background:'#313332',padding:7,borderRadius:5,color:'white',textDecoration:'none'}}>Search</a>
+                                </div>
+                        </from>
                         <h3 align="center">Equipment History</h3>
                         <hr/>
                         

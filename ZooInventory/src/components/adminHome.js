@@ -161,14 +161,6 @@ export default  class adminHome extends  Component{
                         <div className = "top-tittle-bar">
                             <h2 className= 'tittle'>DASHBOARD</h2>
                             <h6>Welcome to your dashboard</h6>
-                            {/* <from style ={{float:'right',display:'flex',gap:5}} onSubmit={this.onSubmit}>
-                                <div className="form-group">
-                                    <input type ="text" required value={this.state.search} onChange = {this.onChangeSearch} className="form-control"/>
-                                </div>
-                                <div className="form-group" style ={{float:'right'}}>
-                                    <a href ={"/adminsearchorder/"+this.state.search+"/"+this.props.match.params.id} style ={{float:'right',background:'#313332',padding:7,borderRadius:5,color:'white',textDecoration:'none'}}>Search</a>
-                                </div>
-                            </from> */}
                         </div>    
 
                         <hr/> 
