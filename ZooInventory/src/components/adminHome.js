@@ -1,6 +1,8 @@
 import  React, {Component} from 'react';
 import axios from 'axios';
 import MedicineTableRow from './checkMedicineLevelTableRow';
+import VegetableTableRow from './checkFoodLevelTableRow';
+
 
 import './css/adminHome.css';
 
@@ -11,90 +13,80 @@ export default  class adminHome extends  Component{
         super(props);
         this.state = 
         {
-            vqty:'',
-            vreorderlevel:'',
-            vresult:'',
+            // vqty:'',
+            // vreorderlevel:'',
+            // vresult:'',
 
-            fqty:'',
-            freorderlevel:'',
-            fresult:'',
+            // fqty:'',
+            // freorderlevel:'',
+            // fresult:'',
 
-            mqty:'',
-            mreorderlevel:'',
-            mresult:'',
+            // mqty:'',
+            // mreorderlevel:'',
+            // mresult:'',
 
-            fiqty:'',
-            fireorderlevel:'',
-            firesult:'',
+            // fiqty:'',
+            // fireorderlevel:'',
+            // firesult:'',
 
-            miqty:'',
-            mireorderlevel:'',
-            miresult:'',
+            // miqty:'',
+            // mireorderlevel:'',
+            // miresult:'',
 
-            medicine: []
+            medicine: [],
+            vegetable: [],
+            fruit: [],
+            meat: [],
+            fish: [],
+            milk: []
         };
     }
 
     componentDidMount() {
         const v = "Vegetables";
         axios.get('http://localhost:4000/zooInventory/vegetable/'+v)
-            .then(res => {
-                this.setState({
-                    vqty: res.data.qty,
-                    vreorderlevel: res.data.reorderlevel
-                });
-            })
-            .catch(function (error){
-                console.log("Can't Get Data");
-            })
+        .then(response => {
+            this.setState({vegetable : response.data});
+        })
+        .catch(function (error){
+            console.log(error);
+        })
 
         const f = "Fruits";
         axios.get('http://localhost:4000/zooInventory/fruits/'+f)
-            .then(res => {
-                this.setState({
-                    fqty: res.data.qty,
-                    freorderlevel: res.data.reorderlevel
-                });
-            })
-            .catch(function (error){
-                console.log("Can't Get Data");
-            })
+        .then(response => {
+            this.setState({fruit : response.data});
+        })
+        .catch(function (error){
+            console.log(error);
+        })
 
         const m = "Meats";
         axios.get('http://localhost:4000/zooInventory/meats/'+m)
-            .then(res => {
-                this.setState({
-                    mqty: res.data.qty,
-                    mreorderlevel: res.data.reorderlevel
-                });
-            })
-            .catch(function (error){
-                console.log("Can't Get Data");
-            })
+        .then(response => {
+            this.setState({meat : response.data});
+        })
+        .catch(function (error){
+            console.log(error);
+        })
 
-        const fish = "Fish";
-        axios.get('http://localhost:4000/zooInventory/fish/'+fish)
-            .then(res => {
-                this.setState({
-                    fiqty: res.data.qty,
-                    fireorderlevel: res.data.reorderlevel
-                });
-            })
-            .catch(function (error){
-                console.log("Can't Get Data");
-            })
+        const fi = "Fish";
+        axios.get('http://localhost:4000/zooInventory/fish/'+fi)
+        .then(response => {
+            this.setState({fish : response.data});
+        })
+        .catch(function (error){
+            console.log(error);
+        })
 
-        const milk = "Milk";
-        axios.get('http://localhost:4000/zooInventory/milk/'+fish)
-            .then(res => {
-                this.setState({
-                    miqty: res.data.qty,
-                    mireorderlevel: res.data.reorderlevel
-                });
-            })
-            .catch(function (error){
-                console.log("Can't Get Data");
-            })
+        const mi = "Milk";
+        axios.get('http://localhost:4000/zooInventory/milk/'+mi)
+        .then(response => {
+            this.setState({milk : response.data});
+        })
+        .catch(function (error){
+            console.log(error);
+        })
 
         axios.get('http://localhost:4000/zooInventory/medicine/')
         .then(response => {
@@ -105,7 +97,42 @@ export default  class adminHome extends  Component{
         })
     }
 
-    tabRow(){
+    vtabRow(){
+        return this.state.vegetable.map(function (object, i){
+            return <VegetableTableRow obj = {object} key = {i}/>;
+        });
+        
+    }
+
+    ftabRow(){
+        return this.state.fruit.map(function (object, i){
+            return <VegetableTableRow obj = {object} key = {i}/>;
+        });
+        
+    }
+
+    mtabRow(){
+        return this.state.meat.map(function (object, i){
+            return <VegetableTableRow obj = {object} key = {i}/>;
+        });
+        
+    }
+
+    fitabRow(){
+        return this.state.fish.map(function (object, i){
+            return <VegetableTableRow obj = {object} key = {i}/>;
+        });
+        
+    }
+
+    mitabRow(){
+        return this.state.milk.map(function (object, i){
+            return <VegetableTableRow obj = {object} key = {i}/>;
+        });
+        
+    }
+
+    meditabRow(){
         return this.state.medicine.map(function (object, i){
             return <MedicineTableRow obj = {object} key = {i}/>;
         });
@@ -114,23 +141,6 @@ export default  class adminHome extends  Component{
 
     
     render() {
-
-        if (parseInt(this.state.vqty) <= parseInt(this.state.vreorderlevel)) {
-            this.state.vresult = "Stock Level Low !!!";
-        }
-        if (parseInt(this.state.fqty) <= parseInt(this.state.freorderlevel)) {
-            this.state.fresult = "Stock Level Low !!!";
-        } 
-        if (parseInt(this.state.mqty) <= parseInt(this.state.mreorderlevel)) {
-            this.state.mresult = "Stock Level Low !!!";
-        } 
-        if (parseInt(this.state.fiqty) <= parseInt(this.state.fireorderlevel)) {
-            this.state.firesult = "Stock Level Low !!!";
-        } 
-        if (parseInt(this.state.miqty) <= parseInt(this.state.mireorderlevel)) {
-            this.state.miresult = "Stock Level Low !!!";
-        } 
-        
         return(
                 <div>
                     <div class="sidebar">
@@ -139,7 +149,8 @@ export default  class adminHome extends  Component{
                             <h5 style={{fontWeight:'bold',color:'#edca2f'}}>INVENTORY DASHBOARD</h5>
                         </center>
                         <br/>
-                        <a href = "/">Admin Home Panel</a>
+                        <a href = "">Admin Home Panel</a>
+                        <a href = "/">Inventory Admin Home</a>
                         <a href = "/addFood">Add Foods</a>
                         <a href = "/addMedicine">Add Medicine</a>
                         <a href = "/addEquipment">Add Equipment</a>
@@ -162,66 +173,129 @@ export default  class adminHome extends  Component{
 
                         <hr/> 
 
-                        <h4>Foods</h4>
+                        <h4>-- Foods --</h4>
                         <hr/>
                         <br/>
                         <div className='food'>
                             <div className='food-inner'>
-                                <h6>Vegetables</h6>
+                                <h5 style={{color:'green'}}>-- Vegetables --</h5>
                                 <br/>
-                                <center>
-                                    <img src = "https://5.imimg.com/data5/SELLER/Default/2021/6/RF/KV/MA/47444804/fresh-vegitables-moq-5-kg--1000x1000.jpeg" width ="200"/>
-                                </center>
+                                <img src = "https://5.imimg.com/data5/SELLER/Default/2021/6/RF/KV/MA/47444804/fresh-vegitables-moq-5-kg--1000x1000.jpeg" width ="200"/>
                                 <br/>
-                                <h6>Quantity - {this.state.vqty}</h6>
-                                <h5 style={{color:'red'}}>{this.state.vresult}</h5>
+                                <table className="table table-striped" style = {{marginTop :20}}>
+                                    <thead>
+                                        <tr>
+                                            <th>Item No</th>
+                                            <th>Category</th>
+                                            <th>Name</th>
+                                            <th>Quantity</th>
+                                            <th>Re Order Level</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {this.vtabRow()}
+                                    </tbody>
+                                </table>
                             </div>
+                            <hr/>
                             <div className='food-inner'>
-                               <h6>Fruits</h6>
+                               <h5 style={{color:'#e03d0b'}}>-- Fruits --</h5>
                                <br/>
-                                <center>
                                     <img src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuFxOV0WxXwzMmlCDR3QiHhEGT-K8KlvJXtg&usqp=CAU" width ="200"/>
-                                </center>
                                 <br/>
-                                <h6>Quantity - {this.state.fqty}</h6>
-                                <h5 style={{color:'red'}}>{this.state.fresult}</h5>
+                                <table className="table table-striped" style = {{marginTop :20}}>
+                                    <thead>
+                                        <tr>
+                                            <th>Item No</th>
+                                            <th>Category</th>
+                                            <th>Name</th>
+                                            <th>Quantity</th>
+                                            <th>Re Order Level</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {this.ftabRow()}
+                                    </tbody>
+                                </table>
                             </div>
+                            <hr/>
                             <div className='food-inner'>
-                                <h6>Meats</h6>
+                                <h5 style={{color:'#f00572'}}>-- Meats --</h5>
                                 <br/>
-                                <center>
                                     <img src = "https://www.thehealthy.com/wp-content/uploads/2018/12/The-5-Best-Meats-to-Eat%E2%80%94and-2-to-Avoid-6.jpg" width ="200"/>
-                                </center>
                                 <br/>
-                                <h6>Quantity - {this.state.mqty}</h6>
-                                <h5 style={{color:'red'}}>{this.state.mresult}</h5>
+                                <table className="table table-striped" style = {{marginTop :20}}>
+                                    <thead>
+                                        <tr>
+                                            <th>Item No</th>
+                                            <th>Category</th>
+                                            <th>Name</th>
+                                            <th>Quantity</th>
+                                            <th>Re Order Level</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {this.mtabRow()}
+                                    </tbody>
+                                </table>
                             </div>
+                            <hr/>
                             <div className='food-inner'>
-                                <h6>Fish</h6>
+                                <h5 style={{color:'#0509f0'}}>-- Fish --</h5>
                                 <br/>
-                                <center>
                                     <img src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSIg9UfYO2NM7d0sEzL274GCBsuWPY5eZP_gxqf_Y7jP1_ueyDEqbviwH_HhSp986wPleY&usqp=CAU" width ="215"/>
-                                </center>
+                               
                                 <br/>
-                                <h6>Quantity - {this.state.fiqty}</h6>
-                                <h5 style={{color:'red'}}>{this.state.firesult}</h5>
+                                <table className="table table-striped" style = {{marginTop :20}}>
+                                    <thead>
+                                        <tr>
+                                            <th>Item No</th>
+                                            <th>Category</th>
+                                            <th>Name</th>
+                                            <th>Quantity</th>
+                                            <th>Re Order Level</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {this.fitabRow()}
+                                    </tbody>
+                                </table>
+                                
                             </div>
+                            <hr/>
                             <div className='food-inner'>
-                                <h6>Milk</h6>
+                                <h5 style={{color:'#f0c905'}}>-- Milk --</h5>
                                 <br/>
-                                <center>
                                     <img src = "https://media-cldnry.s-nbcnews.com/image/upload/t_fit-1240w,f_auto,q_auto:best/newscms/2021_27/1744465/notmilk-mc-main-210706.jpg" width ="230"/>
-                                </center>
+                           
                                 <br/>
-                                <h6>Quantity - {this.state.miqty}</h6>
-                                <h5 style={{color:'red'}}>{this.state.miresult}</h5>
+                                <table className="table table-striped" style = {{marginTop :20}}>
+                                    <thead>
+                                        <tr>
+                                            <th>Item No</th>
+                                            <th>Category</th>
+                                            <th>Name</th>
+                                            <th>Quantity</th>
+                                            <th>Re Order Level</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {this.fitabRow()}
+                                    </tbody>
+                                </table>
                             </div>
                         </div> 
 
                         <hr/>
 
-                        <h4>Medicine</h4>
-
+                        <br/>
+                        <h4>-- Medicine --</h4>
+                        <img src = "https://assets.nst.com.my/images/articles/ondontmiss1_1589162412.jpg" width ="200"/>
                         <div>
                         <table className="table table-striped" style = {{marginTop :20}}>
                             <thead>
@@ -234,7 +308,7 @@ export default  class adminHome extends  Component{
                                 </tr>
                             </thead>
                             <tbody>
-                                {this.tabRow()}
+                                {this.meditabRow()}
                             </tbody>
                         </table>
                         </div> 

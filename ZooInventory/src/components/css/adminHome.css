@@ -81,11 +81,11 @@ div.content {
     height: 250px;
 }
 
-.food {
+/* .food {
     display: flex;
     justify-content: space-around;
-}
+} */
 
-.food .food-inner {
+/* .food .food-inner {
     text-align: center;
-}
+} */

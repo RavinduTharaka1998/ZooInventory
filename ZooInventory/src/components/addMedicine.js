@@ -118,7 +118,8 @@ export default  class addMedicine extends  Component{
                             <h5 style={{fontWeight:'bold',color:'#edca2f'}}>INVENTORY DASHBOARD</h5>
                         </center>
                         <br/>
-                        <a href = "/">Admin Home Panel</a>
+                        <a href = "">Admin Home Panel</a>
+                        <a href = "/">Inventory Admin Home</a>
                         <a href = "/addFood">Add Foods</a>
                         <a href = "/addMedicine">Add Medicine</a>
                         <a href = "/addEquipment">Add Equipment</a>

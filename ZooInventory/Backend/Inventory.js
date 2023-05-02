@@ -77,7 +77,7 @@ zooRoute.route('/deletefood/:id').get(function(req,res){
 zooRoute.route('/vegetable/:id').get(function (req,res){
     let id = req.params.id;
     console.log("Vegetable Food Get called " +id);
-    Foods.findOne({$and:[{category : id}]}, function (err,foods){
+    Foods.find({$and:[{category : id}]}, function (err,foods){
         //console.log(foods);
         res.json(foods);
     });
@@ -86,7 +86,7 @@ zooRoute.route('/vegetable/:id').get(function (req,res){
 zooRoute.route('/fruits/:id').get(function (req,res){
     let id = req.params.id;
     console.log("Fruits Food Get called " +id);
-    Foods.findOne({$and:[{category : id}]}, function (err,foods){
+    Foods.find({$and:[{category : id}]}, function (err,foods){
         //console.log(foods);
         res.json(foods);
     });
@@ -95,7 +95,7 @@ zooRoute.route('/fruits/:id').get(function (req,res){
 zooRoute.route('/meats/:id').get(function (req,res){
     let id = req.params.id;
     console.log("Meats Food Get called " +id);
-    Foods.findOne({$and:[{category : id}]}, function (err,foods){
+    Foods.find({$and:[{category : id}]}, function (err,foods){
         //console.log(foods);
         res.json(foods);
     });
@@ -104,7 +104,7 @@ zooRoute.route('/meats/:id').get(function (req,res){
 zooRoute.route('/fish/:id').get(function (req,res){
     let id = req.params.id;
     console.log("Fish Food Get called " +id);
-    Foods.findOne({$and:[{category : id}]}, function (err,foods){
+    Foods.find({$and:[{category : id}]}, function (err,foods){
         //console.log(foods);
         res.json(foods);
     });
@@ -113,7 +113,7 @@ zooRoute.route('/fish/:id').get(function (req,res){
 zooRoute.route('/milk/:id').get(function (req,res){
     let id = req.params.id;
     console.log("Fish Food Get called " +id);
-    Foods.findOne({$and:[{category : id}]}, function (err,foods){
+    Foods.find({$and:[{category : id}]}, function (err,foods){
         //console.log(foods);
         res.json(foods);
     });
