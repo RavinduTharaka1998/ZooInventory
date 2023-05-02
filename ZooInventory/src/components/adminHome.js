@@ -277,7 +277,7 @@ export default  class adminHome extends  Component{
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {this.fitabRow()}
+                                        {this.mitabRow()}
                                     </tbody>
                                 </table>
                             </div>

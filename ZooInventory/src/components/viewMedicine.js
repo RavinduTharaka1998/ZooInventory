@@ -2,6 +2,8 @@ import  React, {Component} from 'react';
 import axios from 'axios';
 import MedicineTableRow from './medicineTableRow';
 import './css/adminHome.css';
+import jsPDF from "jspdf";
+import 'jspdf-autotable';
 
 export default  class viewMedicine extends  Component{
 
@@ -38,6 +40,32 @@ export default  class viewMedicine extends  Component{
         });
         
     }
+
+    exportPDF = () => {
+        const unit = "pt";
+        const size = "A4"; // Use A1, A2, A3 or A4
+        const orientation = "portrait"; // portrait or landscape
+    
+        const marginLeft = 40;
+        const doc = new jsPDF(orientation, unit, size);
+    
+        doc.setFontSize(15);
+    
+        const title = "My Medicines";
+        const headers = [["Item No","Date","Name", "Qty", "Expire Date","Unit Price", "Vendor", "Re-Order-Level"]];
+    
+        const data = this.state.medicine.map(elt=> [elt.itemno, elt.date, elt.name,elt.qty, elt.edate, elt.uprice, elt.vendor,elt.reorderlevel]);
+    
+        let content = {
+          startY: 50,
+          head: headers,
+          body: data
+        };
+    
+        doc.text(title, marginLeft, 40);
+        doc.autoTable(content);
+        doc.save("Medicines_Report.pdf")
+      }
 
     render() {
         return(
@@ -97,6 +125,9 @@ export default  class viewMedicine extends  Component{
 
                             
                         <hr/>  
+                        <center>
+                            <button className='btn btn-primary' onClick={() => this.exportPDF()}>Export Medicines</button>
+                        </center>
                         <hr/>
                         </div>
                 </div>
